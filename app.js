@@ -1,5 +1,22 @@
 deepai.setApiKey("52f5a794-8f2d-498d-a173-d4441ea2285a");
 
+var bwimageinp;
+
+document.getElementById("bwimage").onchange = function (evt) {
+  var tgt = evt.target || window.event.srcElement,
+    files = tgt.files;
+
+  // FileReader support
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function () {
+      bwimageinp = fr.result;
+    };
+
+    fr.readAsDataURL(files[0]);
+  } else {
+  }
+};
 document.getElementById("but11").addEventListener("click", async function () {
   console.log("started");
   document.getElementById(
@@ -38,15 +55,11 @@ document.getElementById("but11").addEventListener("click", async function () {
 
   console.log(resp);
   document.getElementById("result").innerHTML = `
-  
+  <div class="card">
+  <div class="card-body">
+  <img src="${resp.output_url}" class="img-fluid" alt="...">
+  </div>
+</div>
 
-
-  
-            <div class="card">
-            <div class="card-body">
-            <img class="img-fluid" src='${resp.output_url}' >
-            </div>
-  
-  
-  `;
+`;
 });
