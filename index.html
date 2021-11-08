@@ -47,24 +47,31 @@
     </nav>
     <!-- navbar end-->
     <div class="container">
-      <div class="row">
-        <div class="col">
+      <div class="row mt-3">
+        <div class="col-sm-12 col-md-6">
           <div class="card">
             <div class="card-body">
               <h2>عکس را آپلود کنید</h2>
-              <input
-                type="file"
-                id="avatar"
-                name="avatar"
-                accept="image/png, image/jpeg"
-              />
+
+
+              <div class="mb-3">
+                <!-- <label for="bwimage"  class="form-label">Default file input example</label> -->
+                <input  accept="image/png, image/jpeg" name="bwimage" class="form-control" id="bwimage" type="file" >
+              </div>
+
+
+
 
               <h2>رنگ آمیزی را شروع کنید</h2>
-              <button id="but11">شروع</button>
+
+              <button id="but11" type="button" class="btn btn-primary">شروع</button>
+
+
+             
             </div>
           </div>
         </div>
-        <div class="col text-center">
+        <div class="col-sm-12 col-md-6 text-center">
           <div id="result"></div>
 
           </div>
