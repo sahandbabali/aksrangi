@@ -8,9 +8,33 @@ document.getElementById("but11").addEventListener("click", async function () {
   <span class="visually-hidden">Loading...</span>
 </div>`;
 
-  var resp = await deepai.callStandardApi("colorizer", {
-    image: document.getElementById("bwimage"),
-  });
+  try {
+    var resp = await deepai.callStandardApi("colorizer", {
+      image: document.getElementById("bwimage"),
+    });
+  } catch (error) {
+    if (
+      error.message == "DeepAI error: File picker has no file picked: image"
+    ) {
+      document.getElementById("result").innerHTML = `
+    
+      <div class="alert alert-danger" role="alert">
+      <p>لطفا عکس را انتخاب کنید</p>
+    </div>
+      
+      
+      `;
+    } else {
+      document.getElementById("result").innerHTML = `
+    
+      <div class="alert alert-danger" role="alert">
+      ${error.message}
+    </div>
+      
+      
+      `;
+    }
+  }
 
   console.log(resp);
   document.getElementById("result").innerHTML = `
