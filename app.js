@@ -17,6 +17,7 @@ document.getElementById("bwimage").onchange = function (evt) {
   } else {
   }
 };
+
 document.getElementById("but11").addEventListener("click", async function () {
   console.log("started");
   document.getElementById(
@@ -57,9 +58,28 @@ document.getElementById("but11").addEventListener("click", async function () {
   document.getElementById("result").innerHTML = `
   <div class="card">
   <div class="card-body">
-  <img src="${resp.output_url}" class="img-fluid" alt="...">
+  <img id="colorresult" src="${resp.output_url}" class="img-fluid" alt="...">
+  <br>
+  
+
+  <a id="downloadcolor" class="btn btn-primary mt-3"  title="colorresult">
+    دانلود عکس
+</a>
+
+
   </div>
 </div>
 
 `;
+  let btnDownload = document.getElementById("downloadcolor");
+  let img = document.getElementById("colorresult");
+  // Must use FileSaver.js 2.0.2 because 2.0.3 has issues.
+  btnDownload.addEventListener("click", () => {
+    let imagePath = img.getAttribute("src");
+    let fileName = getFileName(imagePath);
+    saveAs(imagePath, fileName);
+  });
+  function getFileName(str) {
+    return str.substring(str.lastIndexOf("/") + 1);
+  }
 });
